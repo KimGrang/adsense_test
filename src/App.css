@@ -58,7 +58,8 @@ body {
   align-items: center;
 }
 
-.ad-space-left {
+.ad-space-left,
+.ad-space-right {
   position: fixed;
   left: 0;
   top: 0;
@@ -67,17 +68,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.ad-space-right {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 20%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 1;
 }
 
 h1 {

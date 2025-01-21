@@ -19,8 +19,18 @@ function App() {
       }
     };
 
+    const checkAdBlocker = () => {
+      if (window.adsbygoogle === undefined) {
+        // 광고 차단기가 감지됨
+        console.log(
+          "광고 차단기가 감지되었습니다. 정상적인 서비스 이용을 위해 광고 차단을 해제해주세요."
+        );
+      }
+    };
+
     if (document.readyState === "complete") {
       initAds();
+      setTimeout(checkAdBlocker, 2000);
     } else {
       window.addEventListener("load", initAds);
       return () => window.removeEventListener("load", initAds);
