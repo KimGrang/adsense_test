@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Calculator } from "./components/Calculator";
 import { Navbar } from "./components/Navbar";
@@ -9,25 +9,52 @@ function App() {
     "calculator"
   );
 
+  useEffect(() => {
+    const initAds = () => {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (err) {
+        console.error("AdSense 초기화 에러:", err);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      initAds();
+    } else {
+      window.addEventListener("load", initAds);
+      return () => window.removeEventListener("load", initAds);
+    }
+  }, []);
+
   return (
     <>
       <Navbar onPageChange={setCurrentPage} currentPage={currentPage} />
       <div className='ad-space-left'>
         <ins
           className='adsbygoogle'
-          style={{ display: "block" }}
+          style={{ display: "block", width: "100%", height: "100%" }}
           data-ad-client='ca-pub-3508671042453521'
-          data-ad-slot='YOUR_AD_SLOT_ID'
+          data-ad-slot='5609071436'
           data-ad-format='auto'
           data-full-width-responsive='true'
-        ></ins>
+        />
       </div>
       <div className='App'>
         <div className='main-content'>
           {currentPage === "calculator" ? <Calculator /> : <UnitConverter />}
         </div>
       </div>
-      <div className='ad-space-right'>{/* AdSense 광고 공간 */}</div>
+      <div className='ad-space-right'>
+        <ins
+          className='adsbygoogle'
+          style={{ display: "block", width: "100%", height: "100%" }}
+          data-ad-client='ca-pub-3508671042453521'
+          data-ad-slot='2454895689'
+          data-ad-format='auto'
+          data-full-width-responsive='true'
+        />
+      </div>
     </>
   );
 }
